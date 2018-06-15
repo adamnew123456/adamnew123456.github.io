@@ -303,7 +303,7 @@ function refreshSchema() {
                 var viewButton = $('<button></button>');
                 viewButton.addClass('schema-table-reload');
                 viewButton.text('+');
-                viewButton.click(make_column_loader(columnListing, view.catalog, view.schema, view.view));
+                viewButton.click(make_column_loader(columnListing, view.catalog, view.schema, view.table));
 
                 viewEntry.append(viewButton);
                 viewEntry.append(viewName);

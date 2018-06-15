@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title> </title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="schema-panel">
+            <button id="refresh-schema"> Refresh </button>
+            <h1> Tables </h1>
+            <ul id="table-list">
+            </ul>
+            <h1> Views </h1>
+            <ul id="view-list">
+            </ul>
+        </div>
+        <div id="query-panel">
+            <input id="address" placeholder="Server Address" type="text" />
+            <div class="button-bar" >
+                <button id="connect"> Connect </button>
+                <button id="disconnect"> Disconnect </button>
+            </div>
+
+            <textarea id="query-input" placeholder="SQL Query"></textarea>
+            <div>
+            </div>
+
+            <div id="display-tab-bar" class="button-bar">
+                <button id="grid-tab-button" class="tab-button enabled">Grid</button>
+                <button id="result-count-button" class="tab-button">Result Count</button>
+                <button id="error-button" class="tab-button">Errors</button>
+            </div>
+            <div id="display-tab-containers">
+                <div id="grid-container" class="tab-page enabled">
+                    <table id="grid-table">
+                    </table>
+                    <button id="next-page"> Next Page </button>
+                </div>
+                <div id="count-container" class="tab-page">
+                </div>
+                <div id="error-container" class="tab-page">
+                    <pre id="stacktrace"></pre>
+                </div>
+            </div>
+
+            <div id="status"> </div>
+        </div>
+    </body>
+    <script src="querytool.js"></script>
+</html>

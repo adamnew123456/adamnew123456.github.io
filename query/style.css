@@ -1,0 +1,115 @@
+ #schema-panel {
+     float: left;
+     width: 20%;
+     height: 90%;
+     overflow: scroll;
+
+     font-size: 0.75em;
+ }
+
+ #refresh-schema {
+     display: block;
+     width: 100%;
+     height: 32px;
+ }
+
+ .schema-table, .schema-view, .schema-column-name {
+     font-weight: bolder;
+ }
+
+ .schema-table-reload {
+     background: none;
+ }
+
+ .schema-column-type {
+     font-style: italic;
+     padding-right: 6px;
+ }
+
+ #query-panel {
+     float: right;
+     width: 80%;
+     height: 90%;
+ }
+
+ #address {
+     display: block;
+     width: 100%;
+ }
+
+ #query-input {
+     display: block;
+     width: 100%;
+     height: 30%;
+ }
+
+ #next-page {
+     width: 100%;
+     display: none;
+ }
+
+ .button-bar {
+     display: flex;
+     width: 100%:
+ }
+
+ .button-bar button {
+     flex: 1 1 auto;
+ }
+
+ .tab-button {
+     border-radius: 0px;
+ }
+
+ .tab-button.enabled {
+     font-weight: bolder;
+ }
+
+ .tab-page {
+     display: none;
+ }
+
+ .tab-page.enabled {
+     display: block;
+ }
+
+ #display-tab-containers {
+     overflow: scroll;
+     height: 65%;
+     width: 100%;
+ }
+
+ #grid-table {
+     min-width: 100%;
+     min-height: 100%;
+     border-collapse: collapse;
+     border: 1px solid black;
+ }
+
+ #grid-table td {
+     border: 1px solid black;
+ }
+
+ .grid-col-name {
+     font-weight: bold;
+     background-color: lightgray;
+ }
+
+ .grid-col-type {
+     font-style: italic;
+     background-color: lightgray;
+ }
+
+ #status {
+     width: 100%;
+     height: 16px;
+     z-index: 100;
+     position: fixed;
+     bottom: 0px;
+     left: 0px;
+     background-color: lightgray;
+ }
+
+ .error {
+     color: red;
+ }

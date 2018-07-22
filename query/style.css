@@ -1,7 +1,7 @@
  #schema-panel {
      float: left;
      width: 20%;
-     height: 90%;
+     height: 100%;
      overflow: scroll;
 
      font-size: 0.75em;
@@ -75,7 +75,7 @@
 
  #display-tab-containers {
      overflow: scroll;
-     height: 65%;
+     height: 70%;
      width: 100%;
  }
 

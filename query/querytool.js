@@ -41,6 +41,8 @@ var Controller = {
     queryEnabled: false,
 
     connect: function(server) {
+        if (server === "") return;
+
         var that = this;
         return new Promise(function(resolve) {
             if (that.server != null) {
@@ -105,8 +107,8 @@ var Controller = {
         return jsonRpc(this.server, 'count', []);
     },
 
-    queryNextPage: function() {
-        return jsonRpc(this.server, 'page', []);
+    queryNextPage: function(pageSize) {
+        return jsonRpc(this.server, 'page', [pageSize]);
     },
 
     finishQuery: function() {
@@ -158,19 +160,19 @@ function displayPage(metadata, rows) {
 
     var table = $('#grid-table');
     var headerRow = $('<tr></tr>');
-    for (var i = 0; i < metadata.columnnames.length; i++) {
+    for (var i = 0; i < metadata.length; i++) {
         var data = $('<td></td>');
         data.addClass('grid-col-name');
-        data.text(metadata.columnnames[i]);
+        data.text(metadata[i].column);
         headerRow.append(data);
     }
     table.append(headerRow);
 
     var typeRow = $('<tr></tr>');
-    for (i = 0; i < metadata.columntypes.length; i++) {
+    for (i = 0; i < metadata.length; i++) {
         data = $('<td></td>');
         data.addClass('grid-col-type');
-        data.text(metadata.columntypes[i]);
+        data.text(metadata[i].datatype);
         typeRow.append(data);
     }
     table.append(typeRow);
@@ -186,9 +188,9 @@ function displayPage(metadata, rows) {
 
     for (i = 0; i < rows.length; i++) {
         var dataRow = $('<tr></tr>');
-        for (var j = 0; j < metadata.columnnames.length; j++) {
+        for (var j = 0; j < metadata.length; j++) {
             data = $('<td></td>');
-            var colname = metadata.columnnames[j];
+            var colname = metadata[j].column;
             data.text(rows[i][colname]);
             dataRow.append(data);
         }
@@ -223,9 +225,6 @@ function displayError(error) {
 }
 
 function tableMetadataFullName(meta) {
-    if (meta.catalog == null) meta.catalog = '';
-    if (meta.schema == null) meta.schema = '';
-
     return '"' +
         meta.catalog.replace(/"/g, '""') + '"."' +
         meta.schema.replace(/"/g, '""') + '"."' +
@@ -333,11 +332,12 @@ $('#refresh-schema').click(function() {
 
 function pageDisplayHelper() {
     return Controller.queryMetadata().then(function(metadata) {
-        if (metadata.columnnames.length == 0) {
+        if (metadata.length == 0) {
             hasNextPage(false);
             Controller.queryResultCount().then(displayCount);
         } else {
-            Controller.queryNextPage().then(function(page) {
+            var pageSize = Number($('#page-size').val());
+            Controller.queryNextPage(pageSize).then(function(page) {
                 displayPage(metadata, page);
                 hasNextPage(true);
             });
